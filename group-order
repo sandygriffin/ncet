@@ -1,0 +1,6 @@
+SELECT sv_ne.catalist_district.statesenatedistrict,
+COUNT(sv_ne.catalist_district.dwid) AS leg_district
+FROM sv_ne.catalist_district
+WHERE sv_ne.catalist_district.statesenatedistrict IS NOT NULL
+GROUP BY sv_ne.catalist_district.statesenatedistrict
+ORDER BY sv_ne.catalist_district.statesenatedistrict;

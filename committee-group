@@ -1,0 +1,4 @@
+SELECT sv_ne.van_attempts.committeename, sv_ne.van_attempts.datecanvassed,sv_ne.van_attempts.vanid, sv_ne.van_attempts.resultshortname, sv_ne.van_attempts.contacttypename
+FROM sv_ne.van_attempts 
+WHERE (sv_ne.van_attempts.datecanvassed >= 2023)
+LIMIT 10

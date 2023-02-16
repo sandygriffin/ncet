@@ -1,6 +1,6 @@
-SELECT sv_ne.van_attempts.committeename, sv_ne.van_attempts.contacttypename, sv_ne.van_attempts.resultshortname,
-COUNT (sv_ne.van_attempts.vanid) AS vanid 
-FROM sv_ne.van_attempts 
-WHERE (sv_ne.van_attempts.datecanvassed >= 2023)
-GROUP BY sv_ne.van_attempts.committeename,sv_ne.van_attempts.contacttypename,sv_ne.van_attempts.resultshortname
-ORDER BY sv_ne.van_attempts.committeename,sv_ne.van_attempts.contacttypename,sv_ne.van_attempts.resultshortname;
+SELECT sv_ne.van_attempts_02.committeename, sv_ne.van_attempts_02.contacttypename, sv_ne.van_attempts_02.resultshortname,
+COUNT (sv_ne.van_attempts_02.vanid) AS vanid 
+FROM sv_ne.van_attempts_02 
+WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
+GROUP BY sv_ne.van_attempts_02.committeename,sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname
+ORDER BY sv_ne.van_attempts_02.committeename,sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname;

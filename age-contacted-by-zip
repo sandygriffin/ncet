@@ -1,0 +1,23 @@
+SELECT sv_ne.catalist_person.regaddrzip,
+CASE
+WHEN sv_ne.catalist_person.age < 24 THEN '18-24'
+WHEN sv_ne.catalist_person.age < 34 THEN '25-34'
+WHEN sv_ne.catalist_person.age < 49 THEN '35-49'
+WHEN sv_ne.catalist_person.age < 49 THEN '50-64'
+ELSE '65+'
+END AS Age_Range,
+COUNT (sv_ne.van_attempts_02.dwid) AS dwid 
+FROM sv_ne.van_attempts_02 
+LEFT JOIN sv_ne.catalist_person
+ON sv_ne.catalist_person.dwid = sv_ne.van_attempts_02.dwid
+WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
+AND (sv_ne.van_attempts_02.resultshortname = 'Canvassed')
+GROUP BY sv_ne.catalist_person.regaddrzip,sv_ne.catalist_person.age,
+CASE 
+WHEN sv_ne.catalist_person.age < 24 THEN '18-24'
+WHEN sv_ne.catalist_person.age < 34 THEN '25-34'
+WHEN sv_ne.catalist_person.age < 49 THEN '35-49'
+WHEN sv_ne.catalist_person.age < 49 THEN '50-64'
+ELSE '65+'
+END 
+ORDER BY Age_Range;

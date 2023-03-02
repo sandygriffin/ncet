@@ -1,3 +1,11 @@
 NE_ATTEMPTS_BY_AGE
 NE_CONTACTS_BY_AGE
 ne_attempts_by_committee
+ne_race_attempts
+ne_race_contacts
+ne_county_attempts
+ne_walk_contacts
+ne_text_contacts
+ne_phone_contacts
+ne_zip_attempts
+ne_zip_contacts

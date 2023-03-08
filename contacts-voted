@@ -1,0 +1,10 @@
+SELECT  sv_ne.van_attempts_02.contacttypename, sv_ne.van_attempts_02.resultshortname,
+COUNT (sv_ne.van_attempts_02.dwid) AS dwid 
+FROM sv_ne.van_attempts_02 
+LEFT JOIN sv_ne.catalist_vote_history_02
+ON sv_ne.catalist_vote_history_02.dwid = sv_ne.van_attempts_02.dwid
+WHERE (sv_ne.van_attempts_02.datecanvassed >= 2022)
+AND (sv_ne.van_attempts_02.datecanvassed < 2023)
+AND (sv_ne.catalist_vote_history_02.e2022gvm IS NOT NULL)
+GROUP BY sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname
+ORDER BY sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname;

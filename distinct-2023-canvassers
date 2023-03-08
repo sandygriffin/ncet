@@ -1,0 +1,6 @@
+SELECT sv_ne.van_attempts.committeename,
+COUNT (DISTINCT sv_ne.van_attempts.canvassedby) AS canvassers 
+FROM sv_ne.van_attempts 
+WHERE (sv_ne.van_attempts.datecanvassed >= 2023)
+GROUP BY sv_ne.van_attempts.committeename
+ORDER BY sv_ne.van_attempts.committeename;

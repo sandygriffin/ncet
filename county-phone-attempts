@@ -1,5 +1,5 @@
 SELECT sv_ne.catalist_district_02.countyname,
-COUNT (sv_ne.van_attempts_02.dwid) AS dwid 
+COUNT (sv_ne.van_attempts_02.dwid) AS phone_attempts 
 FROM sv_ne.van_attempts_02 
 LEFT JOIN sv_ne.catalist_district_02
 ON sv_ne.catalist_district_02.dwid = sv_ne.van_attempts_02.dwid

@@ -4,5 +4,6 @@ FROM sv_ne.van_attempts_02
 LEFT JOIN sv_ne.catalist_district_02
 ON sv_ne.catalist_district_02.dwid = sv_ne.van_attempts_02.dwid
 WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
+AND sv_ne.van_attempts_02.contacttypename != 'Historic'
 GROUP BY sv_ne.catalist_district_02.countyname
 ORDER BY sv_ne.catalist_district_02.countyname;

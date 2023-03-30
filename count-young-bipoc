@@ -1,0 +1,7 @@
+SELECT sv_ne.catalist_person.regaddrzip,
+COUNT (sv_ne.catalist_person.dwid) AS dwid 
+FROM sv_ne.catalist_person
+WHERE sv_ne.catalist_person.race != 'caucasian'
+OR sv_ne.catalist_person.age <= 35
+GROUP BY sv_ne.catalist_person.regaddrzip
+ORDER BY sv_ne.catalist_person.regaddrzip;

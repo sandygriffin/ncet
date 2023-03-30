@@ -1,0 +1,12 @@
+SELECT sv_ne.catalist_person.regaddrzip,
+COUNT (sv_ne.catalist_person.dwid) AS dwid 
+FROM sv_ne.van_attempts_02 
+LEFT JOIN sv_ne.catalist_person
+ON sv_ne.catalist_person.dwid = sv_ne.van_attempts_02.dwid
+WHERE sv_ne.catalist_person.race != 'caucasian'
+OR sv_ne.catalist_person.age <= 35
+AND (sv_ne.van_attempts_02.datecanvassed >= 2023)
+AND (sv_ne.van_attempts_02.resultshortname = 'Canvassed')
+AND sv_ne.van_attempts_02.contacttypename != 'Historic'
+GROUP BY sv_ne.catalist_person.regaddrzip
+ORDER BY sv_ne.catalist_person.regaddrzip;

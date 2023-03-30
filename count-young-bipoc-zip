@@ -1,7 +1,9 @@
 SELECT sv_ne.catalist_person.regaddrzip,
 COUNT (sv_ne.catalist_person.dwid) AS dwid 
 FROM sv_ne.catalist_person
+LEFT JOIN sv_ne.van_attempts_02
+ON sv_ne.catalist_person.dwid = sv_ne.van_attempts_02.dwid
 WHERE sv_ne.catalist_person.race != 'caucasian'
-OR sv_ne.catalist_person.age <= 35
+OR (sv_ne.catalist_person.age <= 35)
 GROUP BY sv_ne.catalist_person.regaddrzip
 ORDER BY sv_ne.catalist_person.regaddrzip;

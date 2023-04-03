@@ -1,0 +1,7 @@
+SELECT sv_ne.van_attempts.contacttypename, sv_ne.van_attempts.resultshortname,
+COUNT (sv_ne.van_attempts.vanid) AS vanid 
+FROM sv_ne.van_attempts 
+WHERE (sv_ne.van_attempts.datecanvassed >= 2023)
+AND sv_ne.van_attempts.contacttypename != 'Historic'
+GROUP BY sv_ne.van_attempts.contacttypename,sv_ne.van_attempts.resultshortname
+ORDER BY sv_ne.van_attempts.contacttypename,sv_ne.van_attempts.resultshortname;

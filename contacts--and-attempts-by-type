@@ -1,7 +1,0 @@
-SELECT sv_ne.van_attempts_02.contacttypename, sv_ne.van_attempts_02.resultshortname,
-COUNT (sv_ne.van_attempts_02.vanid) AS vanid 
-FROM sv_ne.van_attempts_02 
-WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
-AND sv_ne.van_attempts_02.contacttypename != 'Historic'
-GROUP BY sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname
-ORDER BY sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname;

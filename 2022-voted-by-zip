@@ -1,0 +1,8 @@
+SELECT sv_ne.catalist_person.regaddrzip,
+COUNT (catalist_vote_history.dwid) AS dwid 
+FROM sv_ne.catalist_vote_history 
+LEFT JOIN sv_ne.catalist_person
+ON sv_ne.catalist_person.dwid = catalist_vote_history.dwid
+WHERE catalist_vote_history.e2022gvm IS NOT NULL
+GROUP BY sv_ne.catalist_person.regaddrzip
+ORDER BY sv_ne.catalist_person.regaddrzip;

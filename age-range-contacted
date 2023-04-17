@@ -15,7 +15,7 @@ AND sv_ne.van_attempts.contacttypename != 'Historic'
 GROUP BY CASE sv_ne.catalist_person.age
 WHEN sv_ne.catalist_person.age < 24 THEN '18-24'
 WHEN sv_ne.catalist_person.age < 34 THEN '25-34'
-WHEN sv_ne.catalist_person.age < 49 THEN '35-49'
+WHEN sv_ne.catalist_person.age < 34 THEN '35-49'
 WHEN sv_ne.catalist_person.age < 49 THEN '50-64'
 ELSE '65+'
 END 

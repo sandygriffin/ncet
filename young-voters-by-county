@@ -1,0 +1,8 @@
+SELECT sv_ne.catalist_person.resaddrcensuscounty,
+COUNT (sv_ne.catalist_person.dwid) AS dwid 
+FROM sv_ne.catalist_person
+LEFT JOIN sv_ne.van_attempts
+ON sv_ne.catalist_person.dwid = sv_ne.van_attempts.dwid
+WHERE (sv_ne.catalist_person.age <= 35)
+GROUP BY sv_ne.catalist_person.resaddrcensuscounty
+ORDER BY sv_ne.catalist_person.resaddrcensuscounty;

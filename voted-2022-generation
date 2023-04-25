@@ -1,0 +1,14 @@
+SELECT
+	CASE
+	    WHEN sv_ne.catalist_person.age <= 26 THEN '18-25'
+        WHEN sv_ne.catalist_person.age <= 42 THEN '26-41'
+        WHEN sv_ne.catalist_person.age <= 58 THEN '42-57'
+        WHEN sv_ne.catalist_person.age <= 77 THEN '58-77'
+        ELSE '78+'
+	END AS Age_Range,
+	COUNT (DISTINCT sv_ne.catalist_person.dwid) AS dwid 
+FROM sv_ne.catalist_person
+   LEFT JOIN sv_ne.catalist_vote_history USING(dwid)
+WHERE sv_ne.catalist_vote_history.e2022gvm IS NOT NULL
+GROUP BY Age_Range
+ORDER BY Age_Range;

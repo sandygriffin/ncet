@@ -16,7 +16,7 @@ GROUP BY CASE sv_ne.catalist_person.age
 WHEN sv_ne.catalist_person.age < 26 THEN '18-25'
 WHEN sv_ne.catalist_person.age < 42 THEN '26-41'
 WHEN sv_ne.catalist_person.age < 58 THEN '42-57'
-WHEN sv_ne.catalist_person.age < 77 THEN '58-77'
-ELSE '78+'
+WHEN sv_ne.catalist_person.age < 77 THEN '58-76'
+ELSE '77+'
 END 
 ORDER BY Age_Range;

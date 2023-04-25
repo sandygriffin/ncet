@@ -1,23 +1,22 @@
-SELECT sv_ne.catalist_person.regaddrzip,
-CASE
+SELECT CASE sv_ne.catalist_person.age
 WHEN sv_ne.catalist_person.age < 24 THEN '18-24'
 WHEN sv_ne.catalist_person.age < 34 THEN '25-34'
 WHEN sv_ne.catalist_person.age < 49 THEN '35-49'
-WHEN sv_ne.catalist_person.age < 49 THEN '50-64'
+WHEN sv_ne.catalist_person.age < 64 THEN '50-64'
 ELSE '65+'
 END AS Age_Range,
-COUNT (sv_ne.van_attempts_02.dwid) AS dwid 
-FROM sv_ne.van_attempts_02 
+COUNT (sv_ne.van_activist_codes.vanid) AS vanid 
+FROM sv_ne.van_attempts 
 LEFT JOIN sv_ne.catalist_person
-ON sv_ne.catalist_person.dwid = sv_ne.van_attempts_02.dwid
-WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
-AND (sv_ne.van_attempts_02.resultshortname = 'Canvassed')
-GROUP BY sv_ne.catalist_person.regaddrzip,sv_ne.catalist_person.age,
-CASE 
+ON sv_ne.catalist_person.dwid = sv_ne.van_attempts.dwid
+LEFT JOIN sv_ne.van_activist_codes
+ON sv_ne.van_activist_codes.vanid = sv_ne.van_attempts.vanid
+WHERE (sv_ne.van_activist_codes.activistcodename = '22 RTW Signer')
+GROUP BY CASE sv_ne.catalist_person.age
 WHEN sv_ne.catalist_person.age < 24 THEN '18-24'
 WHEN sv_ne.catalist_person.age < 34 THEN '25-34'
 WHEN sv_ne.catalist_person.age < 49 THEN '35-49'
-WHEN sv_ne.catalist_person.age < 49 THEN '50-64'
+WHEN sv_ne.catalist_person.age < 64 THEN '50-64'
 ELSE '65+'
 END 
 ORDER BY Age_Range;

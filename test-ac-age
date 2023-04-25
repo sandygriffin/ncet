@@ -1,9 +1,9 @@
 SELECT
 CASE
-    WHEN sv_ne.catalist_person.age < 26 THEN '18-25'
-    WHEN sv_ne.catalist_person.age < 42 THEN '26-41'
-    WHEN sv_ne.catalist_person.age < 58 THEN '42-57'
-    WHEN sv_ne.catalist_person.age < 77 THEN '58-77'
+    WHEN sv_ne.catalist_person.age <= 26 THEN '18-25'
+    WHEN sv_ne.catalist_person.age <= 42 THEN '26-41'
+    WHEN sv_ne.catalist_person.age <= 58 THEN '42-57'
+    WHEN sv_ne.catalist_person.age <= 77 THEN '58-77'
     ELSE '78+'
 END AS Age_Range,
 COUNT (sv_ne.van_activist_codes.vanid) AS vanid 

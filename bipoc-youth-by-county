@@ -1,0 +1,9 @@
+SELECT (sv_ne.catalist_district.countyname) AS youngbipoccounty,
+COUNT (DISTINCT sv_ne.catalist_district.dwid) AS dwid 
+FROM sv_ne.catalist_district
+LEFT JOIN sv_ne.catalist_person USING (dwid)
+LEFT JOIN sv_ne.van_attempts USING (dwid)
+WHERE (sv_ne.catalist_person.race != 'caucasian')
+OR (sv_ne.catalist_person.age <= 35)
+GROUP BY sv_ne.catalist_district.countyname
+ORDER BY sv_ne.catalist_district.countyname;

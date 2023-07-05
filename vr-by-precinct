@@ -1,0 +1,8 @@
+SELECT sv_ne.catalist_district.uniqueprecinctcode, sv_ne.catalist_district.statesenatedistrict,
+COUNT (catalist_person.dwid) AS dwid
+FROM sv_ne.catalist_person 
+LEFT JOIN sv_ne.catalist_district 
+ON sv_ne.catalist_district.dwid = catalist_person.dwid
+WHERE catalist_person.voterstatus IS NOT NULL
+GROUP BY sv_ne.catalist_district.uniqueprecinctcode, sv_ne.catalist_district.statesenatedistrict
+ORDER BY sv_ne.catalist_district.uniqueprecinctcode, sv_ne.catalist_district.statesenatedistrict;

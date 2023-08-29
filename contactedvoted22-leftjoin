@@ -7,6 +7,7 @@ LEFT JOIN sv_ne.van_attempts
 ON sv_ne.van_attempts.dwid = catalist_vote_history.dwid
 WHERE catalist_vote_history.e2022gvm IS NOT NULL
 AND (sv_ne.van_attempts.resultshortname = 'Canvassed')
+AND sv_ne.van_attempts.contacttypename != 'Historic'
 AND (sv_ne.van_attempts.datecanvassed BETWEEN '2022-01-01 00:00:00' AND '2022-11-08 00:00:00')
 GROUP BY sv_ne.catalist_person.regaddrzip
 ORDER BY sv_ne.catalist_person.regaddrzip) AS contactvoted
@@ -18,6 +19,7 @@ LEFT JOIN sv_ne.catalist_person
 ON sv_ne.catalist_person.dwid = sv_ne.van_attempts.dwid
 WHERE (sv_ne.van_attempts.datecanvassed BETWEEN '2022-01-01 00:00:00' AND '2022-11-08 00:00:00')
 AND (sv_ne.van_attempts.resultshortname = 'Canvassed')
+AND sv_ne.van_attempts.contacttypename != 'Historic'
 GROUP BY sv_ne.catalist_person.regaddrzip
 ORDER BY sv_ne.catalist_person.regaddrzip) AS contacted
 ON contacted.regaddrzip = contactvoted.regaddrzip

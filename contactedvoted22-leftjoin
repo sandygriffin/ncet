@@ -1,5 +1,5 @@
 SELECT * FROM (SELECT sv_ne.catalist_person.regaddrzip,
-COUNT (catalist_vote_history.dwid)  
+COUNT (DISTINCT catalist_vote_history.dwid)  
 FROM sv_ne.catalist_vote_history 
 LEFT JOIN sv_ne.catalist_person
 ON sv_ne.catalist_person.dwid = catalist_vote_history.dwid
@@ -11,7 +11,7 @@ GROUP BY sv_ne.catalist_person.regaddrzip
 ORDER BY sv_ne.catalist_person.regaddrzip) AS contactvoted
 
 LEFT JOIN (SELECT sv_ne.catalist_person.regaddrzip,
-COUNT (sv_ne.van_attempts.dwid)  
+COUNT (DISTINCT sv_ne.van_attempts.dwid)  
 FROM sv_ne.van_attempts 
 LEFT JOIN sv_ne.catalist_person
 ON sv_ne.catalist_person.dwid = sv_ne.van_attempts.dwid

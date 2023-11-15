@@ -1,0 +1,9 @@
+SELECT COUNT (DISTINCT sv_ne.catalist_person.dwid) AS dwid 
+FROM sv_ne.catalist_person
+LEFT JOIN sv_ne.catalist_vote_history
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_vote_history.dwid
+LEFT JOIN sv_ne.catalist_models
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_models.dwid
+WHERE (voterstatus = 'active' OR voterstatus = 'inactive')
+AND (sv_ne.catalist_models.catalistmodel_education > 50)
+AND sv_ne.catalist_vote_history.e2020gvm = 'mail'

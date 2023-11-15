@@ -1,0 +1,8 @@
+SELECT sv_ne.catalist_district.precinctname, 
+COUNT (DISTINCT sv_ne.catalist_person.dwid) AS blackvoters 
+FROM sv_ne.catalist_district
+INNER JOIN sv_ne.catalist_person
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_district.dwid
+WHERE (sv_ne.catalist_person.race  = 'black')
+GROUP BY sv_ne.catalist_district.precinctname
+ORDER BY COUNT (DISTINCT sv_ne.catalist_person.dwid) DESC;

@@ -1,0 +1,13 @@
+SELECT sv_ne.catalist_district.precinctname, precinctcode,
+COUNT (DISTINCT sv_ne.catalist_person.dwid) AS bivoters 
+FROM sv_ne.catalist_person
+LEFT JOIN sv_ne.catalist_district
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_district.dwid
+LEFT JOIN sv_ne.catalist_vote_history
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_vote_history.dwid
+LEFT JOIN sv_ne.catalist_models
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_models.dwid
+WHERE (voterstatus = 'active' OR voterstatus = 'inactive')
+AND ((sv_ne.catalist_models.catalistmodel_education > 50) OR (sv_ne.catalist_person.age <= 35) OR (sv_ne.catalist_person.gender  = 'female') OR  (sv_ne.catalist_person.race  = 'black'))
+GROUP BY sv_ne.catalist_district.precinctname,precinctcode
+ORDER BY COUNT (DISTINCT sv_ne.catalist_person.dwid) DESC;

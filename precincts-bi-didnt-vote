@@ -1,0 +1,14 @@
+SELECT sv_ne.catalist_district.precinctname,
+COUNT (DISTINCT sv_ne.catalist_person.dwid) AS youngvoters 
+FROM sv_ne.catalist_district
+LEFT JOIN sv_ne.catalist_person
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_district.dwid
+LEFT JOIN sv_ne.catalist_vote_history
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_vote_history.dwid
+LEFT JOIN sv_ne.catalist_models
+ON sv_ne.catalist_person.dwid = sv_ne.catalist_models.dwid
+WHERE ((sv_ne.catalist_models.catalistmodel_education > 50) OR (sv_ne.catalist_person.age <= 35) OR (sv_ne.catalist_person.gender  = 'female') OR  (sv_ne.catalist_person.race  = 'black'))
+AND (voterstatus = 'active' OR voterstatus = 'inactive')
+AND sv_ne.catalist_vote_history.e2020gvm IS NULL
+GROUP BY sv_ne.catalist_district.precinctname
+ORDER BY COUNT (DISTINCT sv_ne.catalist_person.dwid) DESC;

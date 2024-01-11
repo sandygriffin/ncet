@@ -1,0 +1,18 @@
+SELECT CASE
+WHEN birth_year_2 <= 2006 
+and birth_year_2 >= 1998 THEN '18-24'
+WHEN birth_year_2 <= 1999 
+and birth_year_2 >=1988
+THEN '25-34'
+WHEN birth_year_2 <= 1989 
+and birth_year_2 >=1973
+THEN '35-49'
+WHEN birth_year_2 <= 1974 
+and birth_year_2 >=1960
+THEN '50-64'
+ELSE '65+'
+END AS Age_Range,
+COUNT (sos_id) AS sosid
+FROM `prod-sv-ne-0dd1120c.2023voterfile_ne.vote_file_9_23` 
+GROUP BY Age_Range
+ORDER BY Age_Range;

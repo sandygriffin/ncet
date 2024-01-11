@@ -1,0 +1,5 @@
+SELECT *
+FROM `prod-sv-ne-0dd1120c.2023voterfile_ne.voter_file_2020` 
+LEFT JOIN `prod-sv-ne-0dd1120c.2023voterfile_ne.vote_file_9_23` 
+ON `prod-sv-ne-0dd1120c.2023voterfile_ne.vote_file_9_23` .text_registrant_id =`prod-sv-ne-0dd1120c.2023voterfile_ne.voter_file_2020`.text_registrant_id
+WHERE `prod-sv-ne-0dd1120c.2023voterfile_ne.vote_file_9_23`.text_registrant_id IS NULL

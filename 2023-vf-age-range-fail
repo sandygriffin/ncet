@@ -1,0 +1,18 @@
+SELECT CASE birth_year
+WHEN birth_year < '2006' THEN '18-24'
+WHEN birth_year < '1999' THEN '25-34'
+WHEN birth_year < '1989' THEN '35-49'
+WHEN birth_year < '1974' THEN '50-64'
+ELSE '65+'
+END AS Age_Range,
+COUNT (text_registrant_id) AS sosid
+FROM `prod-sv-ne-0dd1120c.2023voterfile_ne.vote_file_9_23` 
+GROUP BY
+CASE
+WHEN birth_year < '2006' THEN '18-24'
+WHEN birth_year < '1999' THEN '25-34'
+WHEN birth_year < '1989' THEN '35-49'
+WHEN birth_year < '1974' THEN '50-64'
+ELSE '65+'
+END
+ORDER BY Age_Range

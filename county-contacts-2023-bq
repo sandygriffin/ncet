@@ -1,0 +1,9 @@
+SELECT countyname,
+COUNT (DISTINCT `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid) AS dwid 
+FROM `prod-sv-ne-0dd1120c.ngpvan.van_attempts`
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.District`
+ON `prod-sv-ne-0dd1120c.catalist_NE.District`.dwid = `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid
+WHERE (datecanvassed >= '2023-01-01T00:00:00')
+AND resultshortname = 'Canvassed'
+GROUP BY countyname
+ORDER BY countyname;

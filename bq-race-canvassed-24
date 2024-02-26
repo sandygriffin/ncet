@@ -1,0 +1,10 @@
+SELECT `prod-sv-ne-0dd1120c.catalist_NE.Person`.race,
+COUNT (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid) AS dwid 
+FROM `prod-sv-ne-0dd1120c.ngpvan.van_attempts`
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Person`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid = `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid
+WHERE (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed >= '2024-01-01T00:00:00')
+AND (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname = 'Canvassed')
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'Historic'
+GROUP BY `prod-sv-ne-0dd1120c.catalist_NE.Person`.race
+ORDER BY `prod-sv-ne-0dd1120c.catalist_NE.Person`.race;

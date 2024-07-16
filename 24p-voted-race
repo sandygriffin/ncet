@@ -1,0 +1,8 @@
+SELECT `prod-sv-ne-0dd1120c.catalist_NE.Race`.race,
+COUNT (`prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.DWID) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Vote_History` 
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Race`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Race`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+WHERE e2024pvm IS NOT NULL
+GROUP BY `prod-sv-ne-0dd1120c.catalist_NE.Race`.race
+ORDER BY `prod-sv-ne-0dd1120c.catalist_NE.Race`.race

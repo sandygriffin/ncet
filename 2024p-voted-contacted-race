@@ -1,0 +1,16 @@
+SELECT race,
+COUNT (DISTINCT `prod-sv-ne-0dd1120c.catalist_NE.Race`.dwid) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Race`
+LEFT JOIN `prod-sv-ne-0dd1120c.ngpvan.van_attempts`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Race`.dwid = `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Vote_History` 
+ON `prod-sv-ne-0dd1120c.catalist_NE.Race`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+WHERE (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed >= '2024-04-23T00:00:00')
+AND e2024pvm IS NOT NULL
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed <= '2024-05-15T00:00:00'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'Historic'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'No Actual Contact'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'Community Canvass'
+AND (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname = 'Canvassed')
+GROUP BY race
+ORDER BY race;

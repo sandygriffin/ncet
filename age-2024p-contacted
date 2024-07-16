@@ -1,0 +1,26 @@
+SELECT CASE
+WHEN birthdate <= '2006-01-01' 
+and birthdate >= '1998-01-01' THEN '18-24'
+WHEN birthdate <= '1999-01-01' 
+and birthdate >= '1988-01-01'
+THEN '25-34'
+WHEN birthdate <= '1989-01-01' 
+and birthdate >= '1973-01-01'
+THEN '35-49'
+WHEN birthdate <= '1974-01-01' 
+and birthdate >= '1960-01-01'
+THEN '50-64'
+ELSE '65+'
+END AS Age_Range,
+COUNT (DISTINCT `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Person`
+LEFT JOIN `prod-sv-ne-0dd1120c.ngpvan.van_attempts`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid = `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.dwid
+WHERE (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed >= '2024-04-23T00:00:00')
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed <= '2024-05-15T00:00:00'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'Historic'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'No Actual Contact'
+AND `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename != 'Community Canvass'
+AND (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname = 'Canvassed')
+GROUP BY Age_Range
+ORDER BY Age_Range;

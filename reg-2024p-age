@@ -1,0 +1,21 @@
+SELECT CASE
+WHEN birthdate <= '2006-01-01' 
+and birthdate >= '1998-01-01' THEN '18-24'
+WHEN birthdate <= '1999-01-01' 
+and birthdate >= '1988-01-01'
+THEN '25-34'
+WHEN birthdate <= '1989-01-01' 
+and birthdate >= '1973-01-01'
+THEN '35-49'
+WHEN birthdate <= '1974-01-01' 
+and birthdate >= '1960-01-01'
+THEN '50-64'
+ELSE '65+'
+END AS Age_Range,
+COUNT (`prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Person`
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+WHERE (voterstatus = 'active' OR voterstatus = 'inactive')
+GROUP BY Age_Range
+ORDER BY Age_Range;

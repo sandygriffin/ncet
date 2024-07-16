@@ -1,0 +1,10 @@
+SELECT `prod-sv-ne-0dd1120c.catalist_NE.Race`.race,
+COUNT (`prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.DWID) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Vote_History` 
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Race`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Race`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Person`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+WHERE (voterstatus = 'active' OR voterstatus = 'inactive')
+GROUP BY `prod-sv-ne-0dd1120c.catalist_NE.Race`.race
+ORDER BY `prod-sv-ne-0dd1120c.catalist_NE.Race`.race

@@ -1,6 +1,6 @@
-SELECT sv_ne.van_attempts_02.committeename, sv_ne.van_attempts_02.contacttypename, sv_ne.van_attempts_02.resultshortname,
-COUNT (sv_ne.van_attempts_02.vanid) AS vanid 
-FROM sv_ne.van_attempts_02 
-WHERE (sv_ne.van_attempts_02.datecanvassed >= 2023)
-GROUP BY sv_ne.van_attempts_02.committeename,sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname
-ORDER BY sv_ne.van_attempts_02.committeename,sv_ne.van_attempts_02.contacttypename,sv_ne.van_attempts_02.resultshortname;
+SELECT `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.committeename, `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename, `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname,
+COUNT (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.vanid) AS vanid
+FROM `prod-sv-ne-0dd1120c.ngpvan.van_attempts` 
+WHERE (`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.datecanvassed >= 2023)
+GROUP BY `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.committeename, `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename,`prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname
+ORDER BY `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.committeename, `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.contacttypename, `prod-sv-ne-0dd1120c.ngpvan.van_attempts`.resultshortname;

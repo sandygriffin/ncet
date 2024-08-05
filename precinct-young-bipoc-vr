@@ -1,0 +1,13 @@
+SELECT `prod-sv-ne-0dd1120c.catalist_NE.District`.uniqueprecinctcode,precinctname,countyname,
+COUNT (`prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.DWID) AS dwid
+FROM `prod-sv-ne-0dd1120c.catalist_NE.Vote_History` 
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.District`
+ON `prod-sv-ne-0dd1120c.catalist_NE.District`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Person`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Person`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.Vote_History`.dwid
+LEFT JOIN `prod-sv-ne-0dd1120c.catalist_NE.Models`
+ON `prod-sv-ne-0dd1120c.catalist_NE.Models`.dwid = `prod-sv-ne-0dd1120c.catalist_NE.District`.dwid
+WHERE (`prod-sv-ne-0dd1120c.catalist_NE.Models`.race != 'caucasian' OR `prod-sv-ne-0dd1120c.catalist_NE.Person`.age <= 35)
+AND (voterstatus = 'active' OR voterstatus = 'inactive')
+GROUP BY `prod-sv-ne-0dd1120c.catalist_NE.District`.uniqueprecinctcode,precinctname,countyname
+ORDER BY `prod-sv-ne-0dd1120c.catalist_NE.District`.uniqueprecinctcode
